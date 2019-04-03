@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home - Robo Átom";
+}
+
+<style>
+    .topTitle {
+        background-color: #003366;
+        height: 250px;
+        border: 2px solid #f2f2f2;
+        padding: 0px;
+        border-radius: 5px;
+    }
+
+    .topTitleMobile {
+        background-color: #003366;
+        height: 246px;
+        padding: 0px;
+    }
+</style>
+<script type="text/javascript" src="//wurfl.io/wurfl.js"></script>
+<script>
+
+    $(document).ready(() => {
+        if (WURFL.is_mobile === true && WURFL.form_factor === "Smartphone") {
+            $("#divTopo").css("display", "none");
+            $('#typeAccess').removeClass('topTitle').addClass('topTitleMobile'); 
+        } else {
+            //nao mobile
+        }
+    });
+
+</script>
+<div id="typeAccess" class="topTitle">
+    <div class="row" style="margin:0px">
+        <div id="divTopo" class="col-lg-6 col-md-6 col-xs-6 col-sm-12" style="margin:0px; padding-top:30px;"> <img src="~/Content/imgs/TitleRobo.png" alt="Alternate Text" /></div>
+        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-12" style="margin:0px; padding-right:0px; float:right;"> <img src="~/Content/imgs/Robo.png" alt="Alternate Text" style="float:right;" /></div>
+    </div>
+</div>
+
+<div class="row">
+    <br>
+    <div class="col-md-4">
+        <h2>Faça o seu Evento!!!</h2>
+        <p>
+            Garanta alegria e diversão para os seus convidados. Conheça algumas das modalidades de eventos.
+        </p>
+        <p><a class="btn btn-primary" href="@Url.Action("Eventos")">Veja Mais... &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Galeria de Fotos</h2>
+        <p>Aqui você pode ver algumas fotos do robô Átom, divertindo e alegrando convidados das festas.</p>
+        <p><a class="btn btn-warning" href="@Url.Action("Lista")">Veja Mais... &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Vídeos do Robô</h2>
+        <p>Algums vídeos do robô Átom fazendo a alegria da galera nas pistas de dança dos eventos.</p>
+        <p><a class="btn btn-danger" href="/">Veja Mais... &raquo;</a></p>
+    </div>
+</div>

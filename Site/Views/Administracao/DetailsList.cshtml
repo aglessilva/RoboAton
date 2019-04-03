@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Site.Models.FotoImagem>
+
+@{
+    ViewBag.Title = "Lista de imagens";
+
+    @*if (Site.Models.SessionContext.IsAutenticado == null)
+    {
+        <script>
+            $(location).attr('href', '../');
+        </script>
+    }*@
+}
+
+<h4>Lista de imagems</h4>
+<hr>
+<p>
+    @Html.ActionLink("Nova Imagem", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-condensed">
+    <tr style="text-align:center">
+        <th>
+            Imagem
+        </th>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Status
+        </th>
+        <th>Ação</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            @{
+                var Heigth = "100px";
+                var base64 = Convert.ToBase64String(item.Path);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+            <td style="width:18%;">
+                <img src="@imgSrc" style="height:@Heigth; width:100%;" class="img-thumbnail">
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "label label-success" }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.Id }, new { @class = "label label-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

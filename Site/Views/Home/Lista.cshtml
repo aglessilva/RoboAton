@@ -1,0 +1,378 @@
+﻿@model IEnumerable<Site.Models.FotoImagem>
+@{
+    ViewBag.Title = "Galeria de Fotos";
+    int pageSize = 0;
+    int pageNumber = 0;
+
+    string _class = "";
+    IEnumerable<Site.Models.FotoImagem> lst = null;
+}
+
+<style>
+    .alturaMobile{
+        height:50px;
+    }
+    .altura {
+        height: 130px;
+    }
+</style>
+
+<script>
+    
+    $(document).ready(() => {
+        if (WURFL.is_mobile === true && WURFL.form_factor === "Smartphone") {
+            $('.altura').removeClass('altura').addClass('alturaMobile'); 
+        } else {
+            //nao mobile
+        }
+    });
+
+</script>
+
+<h4>Galeria de Fotos</h4>
+<hr />
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-primary">
+        <div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="cursor:pointer;">
+            <h4 class="panel-title" >
+                <a>
+                    <span class="glyphicon glyphicon-picture"> </span>
+                    Aniversário
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div style="width:90%; margin:auto;">
+                    <div id="carousel-example-generic" class="carousel slide">
+                        <div class="carousel-inner">
+                            @{pageSize = Model.Where(x => x.TipoEvento == 1).Count(); pageNumber = 0; }
+                            @while (true)
+                            {
+                                _class = @pageNumber == 0 ? "item active" : "item";
+                                lst = Model.Where(x => x.TipoEvento == 1).Skip(pageNumber).Take(4);
+                                pageNumber += 4;
+
+                                if (lst.Count() == 0)
+                                    break;
+
+                                <div class="@_class">
+                                    <div class="row">
+                                        @foreach (var item in lst)
+                                        {
+                                            var base64 = Convert.ToBase64String(item.Path);
+                                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                                            <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+                                                <img  src="@imgSrc" style="width:100%;" class="img-thumbnail altura" onclick="ZoomImagem(1);">
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                            <span class="icon-prev text-primary"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                            <span class="icon-next text-primary"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="cursor:pointer;">
+            <h4 class="panel-title">
+                <a>
+                    <span class="glyphicon glyphicon-picture"> </span>
+                    Casamento
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div style="width:90%; margin:auto;">
+                    <div id="carousel-example-generic-Two" class="carousel slide">
+                        <div class="carousel-inner">
+
+                            @{pageSize = Model.Where(x => x.TipoEvento == 2).Count(); pageNumber = 0; }
+                            @while (true)
+                            {
+                                _class = @pageNumber == 0 ? "item active" : "item";
+                                lst = Model.Where(x => x.TipoEvento == 2).Skip(pageNumber).Take(4);
+                                pageNumber += 4;
+
+                                if (lst.Count() == 0)
+                                    break;
+
+                                <div class="@_class">
+                                    <div class="row">
+                                        @foreach (var item in lst)
+                                        {
+                                            var base64 = Convert.ToBase64String(item.Path);
+                                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                                            <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+                                                <img src="@imgSrc" style="width:100%;" class="img-thumbnail altura" onclick="ZoomImagem(2);">
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic-Two" data-slide="prev">
+                            <span class="icon-prev text-primary"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic-Two" data-slide="next">
+                            <span class="icon-next text-primary"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="cursor:pointer;">
+            <h4 class="panel-title">
+                <a >
+                    <span class="glyphicon glyphicon-picture"> </span>
+                    Confraternização
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div style="width:90%; margin:auto;">
+                    <div id="carousel-example-generic-Three" class="carousel slide">
+                        <div class="carousel-inner">
+
+                            @{pageSize = Model.Where(x => x.TipoEvento == 3).Count(); pageNumber = 0; }
+                            @while (true)
+                            {
+                                _class = @pageNumber == 0 ? "item active" : "item";
+                                lst = Model.Where(x => x.TipoEvento == 3).Skip(pageNumber).Take(4);
+                                pageNumber += 4;
+
+                                if (lst.Count() == 0)
+                                    break;
+
+                                <div class="@_class">
+                                    <div class="row">
+                                        @foreach (var item in lst)
+                                        {
+                                            var base64 = Convert.ToBase64String(item.Path);
+                                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                                            <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+                                                <img src="@imgSrc" style="width:100%; " class="img-thumbnail altura" onclick="ZoomImagem(3);">
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic-Three" data-slide="prev">
+                            <span class="icon-prev text-primary"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic-Three" data-slide="next">
+                            <span class="icon-next text-primary"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title caccordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="cursor:pointer;">
+                <a >
+                    <span class="glyphicon glyphicon-picture"> </span>
+                    Casas Noturnas
+                </a>
+            </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div style="width:90%; margin:auto;">
+                    <div id="carousel-example-generic-Four" class="carousel slide">
+                        <div class="carousel-inner">
+
+                            @{pageSize = Model.Where(x => x.TipoEvento == 4).Count(); pageNumber = 0; }
+                            @while (true)
+                            {
+                                _class = @pageNumber == 0 ? "item active" : "item";
+                                lst = Model.Where(x => x.TipoEvento == 4).Skip(pageNumber).Take(4);
+                                pageNumber += 4;
+
+                                if (lst.Count() == 0)
+                                    break;
+
+                                <div class="@_class">
+                                    <div class="row">
+                                        @foreach (var item in lst)
+                                        {
+                                            var base64 = Convert.ToBase64String(item.Path);
+                                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                                            <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+                                                <img src="@imgSrc" style="width:100%; " class="img-thumbnail altura" onclick="ZoomImagem(4);">
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic-Four" data-slide="prev">
+                            <span class="icon-prev text-primary"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic-Four" data-slide="next">
+                            <span class="icon-next text-primary"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" style="cursor:pointer;">
+                <a>
+                    <span class="glyphicon glyphicon-picture"> </span>
+                    Debutante
+                </a>
+            </h4>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div style="width:90%; margin:auto;">
+                    <div id="carousel-example-generic-Five" class="carousel slide">
+                        <div class="carousel-inner">
+
+                            @{pageSize = Model.Where(x => x.TipoEvento == 5).Count(); pageNumber = 0; }
+                            @while (true)
+                            {
+                                _class = @pageNumber == 0 ? "item active" : "item";
+                                lst = Model.Where(x => x.TipoEvento == 5).Skip(pageNumber).Take(4);
+                                pageNumber += 4;
+
+                                if (lst.Count() == 0)
+                                    break;
+
+                                <div class="@_class">
+                                    <div class="row">
+                                        @foreach (var item in lst)
+                                        {
+                                            var base64 = Convert.ToBase64String(item.Path);
+                                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                                            <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+                                                <img src="@imgSrc" style="width:100%; " class="img-thumbnail altura" onclick="ZoomImagem(5);">
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic-Five" data-slide="prev">
+                            <span class="icon-prev text-primary"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic-Five" data-slide="next">
+                            <span class="icon-next text-primary"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h4 class="panel-title accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" style="cursor:pointer;">
+                <a>
+                    <span class="glyphicon glyphicon-picture"> </span>
+                    Baile de Formatura
+                </a>
+            </h4>
+        </div>
+        <div id="collapseSix" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div style="width:90%; margin:auto;">
+                    <div id="carousel-example-generic-Six" class="carousel slide">
+                        <div class="carousel-inner">
+
+                            @{pageSize = Model.Where(x => x.TipoEvento == 6).Count(); pageNumber = 0; }
+                            @while (true)
+                            {
+                                _class = @pageNumber == 0 ? "item active" : "item";
+                                lst = Model.Where(x => x.TipoEvento == 6).Skip(pageNumber).Take(4);
+                                pageNumber += 4;
+
+                                if (lst.Count() == 0)
+                                    break;
+
+                                <div class="@_class">
+                                    <div class="row">
+                                        @foreach (var item in lst)
+                                        {
+                                            var base64 = Convert.ToBase64String(item.Path);
+                                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                                            <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+                                                <img src="@imgSrc" style="width:100%; " class="img-thumbnail altura" onclick="ZoomImagem(6);">
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic-Six" data-slide="prev">
+                            <span class="icon-prev text-primary"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic-Six" data-slide="next">
+                            <span class="icon-next text-primary"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="divModal">
+    @if (IsAjax)
+    {
+        Html.RenderPartial("Carrosssel");
+    }
+</div>
+
+
+<script>
+    var ZoomImagem = (_typeEvent) => {
+        var urlAction = '@Url.Action("Carrosssel")';
+            $.ajax({
+                url: urlAction,
+                type: "GET",
+                dataType: "html",
+                cache: false,
+                async: false,
+                data: { id: _typeEvent },
+                success: function (data) {
+                    $("#divModal").html(data);
+                    $('#myModalZoon').modal('show');
+                },
+                error: function (data)
+                {
+                    $("#divModal").html(data);
+                    $('#myModalZoon').modal('show');
+                }
+            });
+    }
+</script>
+

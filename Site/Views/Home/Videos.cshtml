@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Videos";
+ }
+<h4>Galeria de Vídeos</h4>
+<hr />
+
+<video width="426" height="240">
+    <source src="video.mp4" type="video/mp4">
+    <source src="video.webm" type="video/webm">
+
+    <object width="426" height="240">
+        <param name="movie" value="http://www.youtube.com/v/-TdbsZg6CC4"></param>
+        <param name="allowFullScreen" value="true"></param>
+        <param name="allowscriptaccess" value="always"></param>
+        <embed src="http://www.youtube.com/v/-TdbsZg6CC4"
+               type="application/x-shockwave-flash"
+               allowscriptaccess="always"
+               allowfullscreen="true"
+               width="426"
+               height="240">
+        </embed>
+    </object>
+</video>

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Site.Models.FotoImagem>
+@{
+    var contador = 0;
+    var _class = string.Empty;
+    IEnumerable<Site.Models.FotoImagem> lst = null;
+}
+
+<style>
+    .alturaMobileCarrosel {
+        height: 350px;
+    }
+
+    .alturaCarrosel {
+        height: 500px;
+    }
+</style>
+
+@if (Model != null)
+{
+    if (Model.Count() > 0)
+    {
+
+        <script>
+
+            $(document).ready(() => {
+                if (WURFL.is_mobile === true && WURFL.form_factor === "Smartphone") {
+                    $('.alturaCarrosel').removeClass('alturaCarrosel').addClass('alturaMobileCarrosel');
+                } else {
+                    //nao mobile
+                }
+            });
+
+        </script>
+
+        <div class="modal fade" id="myModalZoon">
+            <div class="modal-dialog">
+                <div id="carousel-example-generic-Zoon" class="carousel slide">
+                    <!-- Indicators data-interval="false" -->
+                    <ol class="carousel-indicators">
+                        @while (contador < Model.Count())
+                        {
+                            <li data-target="#carousel-example-generic-Zoon" data-slide-to="@contador" class="@(contador == 0 ? "active": "")"></li>
+                            contador++;
+                        }
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+
+                    <div class="carousel-inner">
+                        @foreach (Site.Models.FotoImagem item in Model)
+                        {
+                            _class = string.IsNullOrWhiteSpace(_class) ? "item active" : "item";
+                            lst = Model.ToList();
+                            var base64 = Convert.ToBase64String(item.Path);
+                            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                            <div class="@_class">
+                                <div class="row" style="margin:auto;">
+                                    <img id="imgFoto" src="@imgSrc" style="width:100%;" class="img-thumbnail alturaCarrosel">
+                                    <div class="carousel-caption">
+                                        <h3>@ViewBag.Evento</h3>
+                                        <p>@item.Descricao</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic-Zoon" data-slide="prev">
+                        <span class="icon-prev text-primary"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic-Zoon" data-slide="next">
+                        <span class="icon-next text-primary"></span>
+                    </a>
+                </div>
+
+
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    }
+
+}
+

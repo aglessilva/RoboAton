@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="Robo de Led, Robô de Led, Festa Robo de Led, Eventos Robo de Led, Robo Atom, Robô Átom, Led, Robo, Robô para Festas, Robo para festas, Robô, Eventos, www.roboatom.com.br, www.roboatom.com, Robo de led Casamento, robo de led aniversário, aniversario, baladas Robo, Videos Robo de Led, Vídeo Robô de Led, Atom, Átom, entretenimento para festas, confraternização, infantil, festa infantil, entretenimento Contratar robo, contratar robo de led, debutante, festa debutante,robo zona leste, Robo leste,robo zona sul,robo sul, robo zona oeste, robo oeste, sp robo de led" />
+    <meta name="googlebot" content="Robo de Led, Robô de Led, Festa Robo de Led, Eventos Robo de Led, Robo Atom, Robô Átom, Led, Robo, Robô para Festas, Robo para festas, Robô, Eventos, www.roboatom.com.br, www.roboatom.com, Robo de led Casamento, robo de led aniversário, aniversario, baladas Robo, Videos Robo de Led, Vídeo Robô de Led, Atom, Átom, entretenimento para festas, confraternização, infantil, festa infantil, entretenimento Contratar robo, contratar robo de led, debutante, festa debutante,robo zona leste, Robo leste,robo zona sul,robo sul, robo zona oeste, robo oeste, sp robo de led" />
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/apoio")
+    <script type="text/javascript" src="//wurfl.io/wurfl.js"></script>
+</head>
+<body style="background-color:#0f100f; color:white;">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("../")" class="navbar-brand">Home</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Sobre o Robo", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contato", "EnviarContato", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+
+            <p id="paragravoMobile" style="text-align:center;">
+                &copy; @DateTime.Now.Year -Robô de Led Átom, festas e eventos - WhatsApp:
+                <img src="~/Content/imgs/whatsapp.png" /> <a onclick="contactPhone('h');">(11) 97135-9795</a> /
+                <a onclick="contactPhone('l');">(11) 99979-9597</a>
+            </p>
+
+        </footer>
+    </div>
+
+    @RenderSection("scripts", required: false)
+    <input type="hidden" id="prot" value="0" />
+</body>
+</html>
+
+
+<script>
+
+    $(document).ready(() => {
+        if (WURFL.is_mobile === true && WURFL.form_factor === "Smartphone") {
+            $('#prot').val("1");
+        } else {
+            //nao mobile
+        }
+    });
+
+
+    var contactPhone = (_prot) => {
+
+        var itemType = document.getElementById('prot').value;
+        if (itemType == '1') {
+            if (_prot == 'h') {
+                window.location.href = "https://wa.me/5511996405857?text=Olá%20Tenho%20interesse%20em%20saber%20mais%20do%20robo%20Atom";
+            } else
+                window.location.href = "https://wa.me/5511999799597?text=Olá%20Tenho%20interesse%20em%20saber%20mais%20do%20robo%20Atom";
+        } else
+            return false;
+    };
+</script>
