@@ -71,15 +71,17 @@ namespace Site.Controllers
                         mail.Body = txtBody.Replace("\n", "<br>");
                         mail.IsBodyHtml = true;
 
-                        //Instância smtp do servidor, neste caso o gmail.
-               
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.Port = 587;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new System.Net.NetworkCredential("agles.developer@gmail.com", "290482hbt");// Login e senha do e-mail.
-                        smtp.EnableSsl = true;
-                        smtp.Send(mail);
+                    //Instância smtp do servidor, neste caso o gmail.
+
+                    SmtpClient smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        UseDefaultCredentials = false,
+                        Credentials = new System.Net.NetworkCredential("agles.developer@gmail.com", "290482hbt"),// Login e senha do e-mail.
+                        EnableSsl = true
+                    };
+                    smtp.Send(mail);
 
                    
 
