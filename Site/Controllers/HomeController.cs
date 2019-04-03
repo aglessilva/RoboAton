@@ -94,7 +94,6 @@ namespace Site.Controllers
                 }
                 catch (Exception ex)
                 {
-
                    return Json(new { isSubmited = false, messageError = ex.Message.ToString() }, JsonRequestBehavior.AllowGet);
                 } 
                 //Instância classe email
