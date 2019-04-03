@@ -25,7 +25,6 @@ namespace Site.Controllers
         [HttpGet]
         public ActionResult Videos()
         {
-          
             return View();
         }
 

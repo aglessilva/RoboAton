@@ -1,11 +1,49 @@
 ﻿
 @{
     ViewBag.Title = "Videos";
- }
+    var pageSize = 0;
+    var pageNumber = 0;
+    var _class = "";
+}
 <h4>Galeria de Vídeos</h4>
 <hr />
 
-<video width="426" height="240">
+
+
+<div style="width:90%; margin:auto;">
+    <div id="carousel-example-generic" class="carousel slide">
+        <div class="carousel-inner">
+
+            @while (pageSize++ < 12)
+            {
+                _class = pageSize == 1 ? "item active" : "item";
+
+                <div class="@_class">
+                    <div class="row">
+                        @while (pageNumber++ < 3)
+                        {
+                            <div class="col-md-4" style="height:240px; border:2px solid red;">teste @pageNumber</div>
+                            <div class="carousel-caption">
+                                <h3>@pageNumber</h3>
+                                <p>@pageSize</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+                pageNumber = 0;
+            }
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="icon-prev text-primary"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="icon-next text-primary"></span>
+        </a>
+    </div>
+</div>
+
+@*<video width="426" height="240">
     <source src="video.mp4" type="video/mp4">
     <source src="video.webm" type="video/webm">
 
@@ -20,5 +58,5 @@
                width="426"
                height="240">
         </embed>
-    </object>
+    </object>*@
 </video>
